@@ -16,6 +16,7 @@ public class Enemy extends Actor {
 		enemy.setAggression(rng.nextInt(100));
 		enemy.setStrength(rng.nextInt(100));
 		enemy.setCharisma(rng.nextInt(100));
+		enemy.setHealth(rng.nextInt(1000)+500);
 		return enemy;
 	}
 }

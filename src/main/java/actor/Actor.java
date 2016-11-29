@@ -8,6 +8,7 @@ public class Actor {
 	int aggression; //counts how often the player resorts to violence
 	int strength; //how good the player is at violence
 	int charisma; //how good the player is at talking
+	int health = 1000;
 	int level = 1;
 
 	public String getName() {
@@ -48,5 +49,17 @@ public class Actor {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public void changeHealth(int amount){
+		this.health = this.health + amount;
 	}
 }

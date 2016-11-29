@@ -8,9 +8,19 @@ public class Player extends Actor{
 	private int experience;
 	private static int[] expArray = {0, 50, 60, 75, 90, 110, 140, 170, 200, 240, 285, 330, 385, 450, 510, 580, 660, 750, 850};
 	private int coins;
+	private Skill wit;
+	private Skill fisticuffs;
+	private Skill kindness;
 
 	public Player(String name){
 		this.name = name;
+	}
+
+	public Player generatePlayer(){
+		Player player = new Player("Brick");
+		player.setLevel(1);
+		player.setStrength(100);
+		return player;
 	}
 
 	public int getExperience() {
@@ -34,5 +44,13 @@ public class Player extends Actor{
 
 	public void changeCoins(int change){
 		this.coins = this.coins + change;
+	}
+
+	public int getCoins() {
+		return coins;
+	}
+
+	public void setCoins(int coins) {
+		this.coins = coins;
 	}
 }

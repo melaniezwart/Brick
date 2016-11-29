@@ -16,6 +16,7 @@ public class GameFrame extends JFrame {
 	private JTextField textField;
 	private JTextArea textArea;
 	private JTextArea leftTop;
+	private JTextArea choiceArea;
 	private JScrollPane scrollPane;
 
 	/**
@@ -32,13 +33,14 @@ public class GameFrame extends JFrame {
 
 		scrollPane = new JScrollPane();
 		JScrollPane statsPanel = new JScrollPane();
+		JScrollPane choicePanel = new JScrollPane();
 
 		textField = new JTextField();
 		textField.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText().isEmpty()) {
-					textArea.append("Empty input, try again.");
+					textArea.append("Empty input, try again.\n");
 				} else {
 					game.action(textField.getText());
 					textField.setText("");
@@ -52,18 +54,18 @@ public class GameFrame extends JFrame {
 		gl_contentPane.setAutoCreateContainerGaps(true);
 
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createSequentialGroup()
-				.addComponent(statsPanel, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-				.addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
+			gl_contentPane.createParallelGroup()
+					.addComponent(statsPanel, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+					.addComponent(choicePanel, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 					.addComponent(textField)
-					.addComponent(scrollPane))
+					.addComponent(scrollPane)
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup()
-				.addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.BASELINE)
-					.addComponent(statsPanel)
-					.addComponent(textField))
-				.addComponent(scrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 560, GroupLayout.PREFERRED_SIZE)
+			gl_contentPane.createSequentialGroup()
+				.addComponent(statsPanel, GroupLayout.PREFERRED_SIZE, 120, 120)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+				.addComponent(choicePanel, GroupLayout.DEFAULT_SIZE, 100, 100)
+				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 20, 20)
 		);
 
 		leftTop = new JTextArea();
@@ -72,6 +74,12 @@ public class GameFrame extends JFrame {
 		leftTop.setBackground(Color.GRAY);
 		leftTop.setForeground(Color.WHITE);
 		leftTop.setEditable(false);
+		choiceArea = new JTextArea();
+		choiceArea.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		choiceArea.setAlignmentX(Component.LEFT_ALIGNMENT);
+		choiceArea.setBackground(Color.GRAY);
+		choiceArea.setForeground(Color.WHITE);
+		choiceArea.setEditable(false);
 		textArea = new JTextArea();
 		textArea.setBackground(Color.DARK_GRAY);
 		textArea.setForeground(Color.WHITE);
@@ -79,6 +87,7 @@ public class GameFrame extends JFrame {
 		textArea.setEditable(true);
 		scrollPane.setViewportView(textArea);
 		statsPanel.setViewportView(leftTop);
+		choicePanel.setViewportView(choiceArea);
 		DefaultCaret caret = (DefaultCaret)textArea.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		contentPane.setLayout(gl_contentPane);
