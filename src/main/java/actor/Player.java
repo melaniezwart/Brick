@@ -1,5 +1,7 @@
 package actor;
 
+import java.util.Random;
+
 /**
  * Created by mzwart on 28-11-2016.
  */
@@ -11,6 +13,7 @@ public class Player extends Actor{
 	private Skill wit;
 	private Skill fisticuffs;
 	private Skill kindness;
+	private Random rng = new Random();
 
 	public Player(String name){
 		this.name = name;
@@ -52,5 +55,19 @@ public class Player extends Actor{
 
 	public void setCoins(int coins) {
 		this.coins = coins;
+	}
+
+	public void punch(){
+		this.aggression++;
+		this.fisticuffs.addExperience(rng.nextInt(10));
+	}
+
+	public void kindAction(){
+		this.aggression--;
+		this.kindness.addExperience(rng.nextInt(10));
+	}
+
+	public void sarcasticAction(){
+		this.wit.addExperience(rng.nextInt(10));
 	}
 }
